@@ -28,15 +28,12 @@ To set up the bot, follow these steps:
 
 3. Run the following command to install the required dependencies:
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
-Copy code
 
 4. Run the bot by executing the following command:
 
-python bot.py
-
-Copy code
+    python bot.py
 
 ## Configuration
 
