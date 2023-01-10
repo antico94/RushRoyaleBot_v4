@@ -1,9 +1,42 @@
+import glob
 import os
 import time
 
 import numpy as np
 from PIL import Image
 from tqdm import tqdm
+
+
+def DeleteFilesByExtension(directory, extension):
+    # Find all the files with the specified extension in the directory
+    files = glob.glob(os.path.join(directory, f'*.{extension}'))
+
+    # Delete the files
+    for file in files:
+        os.remove(file)
+
+
+def GetSubdirectories(directory):
+    subdirectories = []
+    # Get a list of all the entries in the directory
+    entries = os.listdir(directory)
+    # Iterate over the entries
+    for entry in entries:
+        # Get the full path of the entry
+        entry_path = os.path.join(directory, entry)
+        # Check if the entry is a directory
+        if os.path.isdir(entry_path):
+            # If it is a directory, add it to the list of subdirectories
+            subdirectories.append(entry_path)
+    return subdirectories
+
+
+def DeleteAllFiletypeFromRootFolder(directory, extension):
+    # Get the list of subdirectories
+    subdirectories = GetSubdirectories(directory)
+    # Delete the files with the specified extension from each subdirectory
+    for subdirectory in subdirectories:
+        DeleteFilesByExtension(subdirectory, extension)
 
 
 def GetAllSubdirectoriesFromFolder(path):

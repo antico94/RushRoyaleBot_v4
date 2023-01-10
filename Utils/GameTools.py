@@ -1,7 +1,12 @@
+import cv2
+import numpy as np
+import tensorflow as tf
+
 from Classes.Board import Board
 from Classes.Box import Box
 from Classes.Buff import Buff
 from Classes.Tile import Tile
+from Utils.ScreenTools import ShowCapture
 
 
 def ConvertIndexToCoordinate(index):
@@ -48,17 +53,11 @@ class ClassifyPillowImage:
 
 
 def GuessUnit(image, classlist):
-    # model = tf.keras.models.load_model('C:\\Users\\Meiu\\Desktop\\RushRoyaleBot_v4\\Neural Network\\GeneratedModels\\units_model.h5')
-    #
-    # # Preprocess the image
-    # image = cv2.resize(image, (57, 57))
-    # image = image.astype('float32') / 255.0
-    # image = np.expand_dims(image, axis=0)
-    #
-    # # Make the prediction
-    # prediction = model.predict(image)
-    # index = np.argmax(prediction)
-    # # Return the predicted unit
-    # return classlist[index]
-    return 'Dani'
+    model = tf.keras.models.load_model('C:\\Users\\Meiu\\Desktop\\RushRoyaleBot_v4\\Neural Network\\GeneratedModels\\units_model_np.h5')
+    image = image.astype(np.float32)
+    image = image.reshape((-1, 55, 57, 3))
+    prediction = model.predict(image)
+    index = np.argmax(prediction)
+    # Return the predicted unit
+    return classlist[index]
 
