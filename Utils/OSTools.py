@@ -6,6 +6,8 @@ import numpy as np
 from PIL import Image
 from tqdm import tqdm
 
+from Utils.WrapperTools import ProgressWrapper
+
 
 def DeleteFilesByExtension(directory, extension):
     # Find all the files with the specified extension in the directory

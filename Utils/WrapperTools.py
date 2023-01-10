@@ -1,5 +1,8 @@
 import inspect
+import time
 import timeit
+
+from tqdm import tqdm
 
 from Logger.Logger import logger
 
@@ -60,6 +63,22 @@ def MeasurePerformance(func):
         result = func(*args, **kwargs)
         end = timeit.default_timer()
         print(f'{func.__name__} took {end - start:.6f} seconds to complete')
+        return result
+
+    return wrapper
+
+
+def ProgressWrapper(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        # Use tqdm to display the progress bar
+        with tqdm(total=100) as pbar:
+            # Call the original function
+            result = func(*args, **kwargs)
+            # Update the progress bar to 100%
+            pbar.update(100)
+        elapsed_time = time.time() - start_time
+        print(f'Elapsed time: {elapsed_time:.2f} seconds')
         return result
 
     return wrapper
