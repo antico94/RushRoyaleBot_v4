@@ -1,9 +1,9 @@
 import os
 
 import numpy as np
-from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
-from keras.models import Sequential
-from keras.utils import to_categorical
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.utils import to_categorical
 from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm
 

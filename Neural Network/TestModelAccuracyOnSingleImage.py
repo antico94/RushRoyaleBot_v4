@@ -15,7 +15,7 @@ class_label = GetAllSubdirectoriesFromFolder(test_dir)
 def classify_image(image_path):
     # Load the model
     model = load_model('units_model.h5')
-    img_width, img_height = 55, 57
+    img_width, img_height = 57, 57
 
     # Load and preprocess the image
     img = image.load_img(image_path, target_size=(img_width, img_height))

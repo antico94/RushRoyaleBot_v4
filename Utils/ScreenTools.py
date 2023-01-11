@@ -5,6 +5,7 @@ import numpy as np
 import pyautogui
 import win32con
 import win32gui
+from PIL import ImageOps
 
 from Utils.WrapperTools import CheckArguments
 from Classes.Box import Box
@@ -35,6 +36,7 @@ def ShowCapture(img: np.ndarray):
 # @CheckArguments
 def GetScreenshot(box: Box):
     img = pyautogui.screenshot(region=(box.left, box.top, box.width, box.height))
+    # img = ImageOps.grayscale(img)
     return img
 
 

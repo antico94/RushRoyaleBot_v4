@@ -9,6 +9,7 @@ from Utils.GameTools import SetTilesBoxes, CreateBoard, GuessUnit
 from Utils.ImageTools import CropImage, ConvertImageToNumpyArray, DrawContour
 from Utils.OSTools import GetAllSubdirectoriesFromFolder
 from Utils.ScreenTools import GetScreenshot, GetAppWindow, GetOwnUnitsWindow
+from Utils.WrapperTools import MeasurePerformance
 
 # GLOBAL VARIABLES
 #############################################################
@@ -24,6 +25,7 @@ TILES = BOARD.GetAllTiles()
 loop = asyncio.get_event_loop()
 
 
+@MeasurePerformance
 async def ShowCalibrations():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         start_time = time.time()
@@ -46,7 +48,7 @@ async def ShowCalibrations():
             guesses = [task.result() for task in done]
             for i, tile in enumerate(TILES):
                 image = DrawContour(ConvertImageToNumpyArray(image), tile.window, guesses[i])
-            # image = cv2.resize(image, (0, 0), fx=2, fy=2)
+            image = cv2.resize(image, (0, 0), fx=2, fy=2)
             cv2.imshow("Screenshot", image)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break

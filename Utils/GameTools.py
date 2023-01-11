@@ -1,4 +1,5 @@
 import cv2
+import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 
@@ -53,10 +54,17 @@ class ClassifyPillowImage:
 
 
 def GuessUnit(image, classList):
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     model = tf.keras.models.load_model('C:\\Users\\Meiu\\Desktop\\RushRoyaleBot_v4\\Neural Network\\GeneratedModels\\units_model_np.h5')
-    image = image.reshape((-1, 57, 57, 3))
-    prediction = model.predict(image)
+    image = np.expand_dims(image, axis=0)
+    # plt.imshow(image, interpolation='nearest')
+    # plt.show()
+    # # image = image.reshape((-1, 57, 57, 3))
+    # quit()
+    # image = np.expand_dims(image, axis=-1)
+    prediction = model.predict(image, verbose=0)
     index = np.argmax(prediction)
     # Return the predicted unit
     return classList[index]
+    # return str(index)
 
