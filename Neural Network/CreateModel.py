@@ -5,14 +5,15 @@ from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator
 
 # dimensions of our images.
-img_width, img_height = 55, 57
+img_width, img_height = 57, 57
 
-train_data_dir = 'C:/Users/Meiu/Desktop/unit'
-validation_data_dir = 'C:/Users/Meiu/Desktop/unit'
+train_data_dir = 'C:/Users/Meiu/Desktop/short_unit'
+validation_data_dir = 'C:/Users/Meiu/Desktop/short_unit'
 nb_train_samples = 59050
 nb_validation_samples = 14757
 epochs = 10
 batch_size = 16
+total_classes = 8
 
 if K.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)
@@ -36,7 +37,7 @@ model.add(Flatten())
 model.add(Dense(64))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
-model.add(Dense(51))
+model.add(Dense(total_classes))
 model.add(Activation('sigmoid'))
 
 model.compile(loss='categorical_crossentropy',

@@ -8,7 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm
 
 # Load the data
-data_dir = 'C:/Users/Meiu/Desktop/unit_np'
+data_dir = 'C:/Users/Meiu/Desktop/short_unit_np'
 x_train = []
 y_train = []
 total_files = 0
@@ -38,7 +38,7 @@ y_train = to_categorical(y_train)
 
 # Create the model
 model = Sequential()
-model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(55, 57, 3)))
+model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(57, 57, 3)))
 model.add(MaxPooling2D((2, 2)))
 model.add(Conv2D(64, (3, 3), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
@@ -46,7 +46,7 @@ model.add(Conv2D(128, (3, 3), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
-model.add(Dense(51, activation='softmax'))
+model.add(Dense(8, activation='softmax'))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=10)
 model.save('GeneratedModels/units_model_np.h5')

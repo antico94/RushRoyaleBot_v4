@@ -12,7 +12,7 @@ from Utils.ScreenTools import GetScreenshot, GetAppWindow, GetOwnUnitsWindow
 
 # GLOBAL VARIABLES
 #############################################################
-TEST_DIR = 'C:/Users/Meiu/Desktop/unit'
+TEST_DIR = 'C:/Users/Meiu/Desktop/short_unit_np'
 CLASS_LABELS = GetAllSubdirectoriesFromFolder(TEST_DIR)
 APP_WINDOW = GetAppWindow()
 UNITS_WINDOW = GetOwnUnitsWindow(APP_WINDOW)

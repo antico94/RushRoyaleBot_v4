@@ -52,12 +52,11 @@ class ClassifyPillowImage:
     pass
 
 
-def GuessUnit(image, classlist):
+def GuessUnit(image, classList):
     model = tf.keras.models.load_model('C:\\Users\\Meiu\\Desktop\\RushRoyaleBot_v4\\Neural Network\\GeneratedModels\\units_model_np.h5')
-    image = image.astype(np.float32)
-    image = image.reshape((-1, 55, 57, 3))
+    image = image.reshape((-1, 57, 57, 3))
     prediction = model.predict(image)
     index = np.argmax(prediction)
     # Return the predicted unit
-    return classlist[index]
+    return classList[index]
 
